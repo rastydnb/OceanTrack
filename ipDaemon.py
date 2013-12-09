@@ -5,13 +5,14 @@ import logging
 import urllib2
 from DOApiService import DOApiService
 from baseDaemon import Daemon
+import os
 
 
 
 class MyDaemon(Daemon):
 
-    LOG_FILENAME = '~/.ipdaemon/ip.log'
-    CONF_FILENAME = '~/.ipdaemon/ipDaemon.cfg'
+    LOG_FILENAME = os.getenv("HOME")+'/.ipdaemon/ip.log'
+    CONF_FILENAME = os.getenv("HOME")+'/.ipdaemon/ipDaemon.cfg'
     MYIPSERVICE = 'http://myip.dnsdynamic.org/'
     ip = '0.0.0.0'
     def run(self):
@@ -20,7 +21,7 @@ class MyDaemon(Daemon):
             self.checkIp()
             service = DOApiService(self.ip, logging, self.CONF_FILENAME)
             service.runtrack(service.getrecords())
-            time.sleep(1)
+            time.sleep(int(service.updateTime))
 
 
     def checkIp(self):

@@ -20,6 +20,7 @@ class DOApiService:
     getDomainsUrl = ''
     configfile = ''
     recordId = ''
+    updateTime = ''
 
 
     def __init__(self, ip='0.0.0.0', logging=None, configfile=None):
@@ -75,7 +76,7 @@ class DOApiService:
 
         self.domainId = configparser.get('DOMAIN', 'Id')
 
-
+        self.updateTime = configparser.get('UPDATE', 'timeout')
 
 
 

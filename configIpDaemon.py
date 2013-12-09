@@ -6,7 +6,7 @@ import os
 import errno
 
 
-CONF_FILENAME = '~/.ipdaemon/ipDaemon.cfg'
+CONF_FILENAME = os.getenv("HOME")+'/.ipdaemon/ipDaemon.cfg'
 apiservice = DOApiService(configfile=CONF_FILENAME)
 configparser = ConfigParser()
 
@@ -76,6 +76,6 @@ def make_sure_path_exists(path):
     except OSError as exception:
         if exception.errno != errno.EEXIST:
             raise
-make_sure_path_exists('~/.ipdaemon')
+make_sure_path_exists(os.getenv("HOME")+'/.ipdaemon')
 newconfig()
 
