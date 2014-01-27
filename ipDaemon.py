@@ -6,6 +6,7 @@ import urllib2
 from DOApiService import DOApiService
 from baseDaemon import Daemon
 import os
+from datetime import datetime as date
 
 
 
@@ -35,7 +36,7 @@ class MyDaemon(Daemon):
 
 
     def debug(self, string):
-        return logging.debug(string)
+        return logging.debug(string + ' date=>' + unicode(date.now()))
 
 
 
