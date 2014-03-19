@@ -82,8 +82,11 @@ class Daemon:
                 print 'Starting ip tracking service'
 
                 # Start the daemon
-                self.daemonize()
-                self.run()
+                try:
+                    self.daemonize()
+                    self.run()
+                except Exception:
+                    print 'Error'
 
 
         def stop(self):
