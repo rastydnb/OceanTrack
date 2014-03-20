@@ -42,6 +42,11 @@ class MyDaemon(Daemon):
         return logging.debug(string + ' date=>' + unicode(date.now()))
 
 
+    def __del__(self):
+        for file in self.files:
+            os.unlink(file)
+
+
 
 
 
