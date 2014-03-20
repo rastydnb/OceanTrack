@@ -24,7 +24,6 @@ class MyDaemon(Daemon):
             service = DOApiService(self.ip, logging, self.CONF_FILENAME)
             service.runtrack(service.getrecords())
             time.sleep(int(service.updateTime))
-            del service
             gc.collect()
 
 
