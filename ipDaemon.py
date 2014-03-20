@@ -43,8 +43,7 @@ class MyDaemon(Daemon):
 
 
     def __del__(self):
-        for file in self.files:
-            os.unlink(file)
+        del self
 
 
 

@@ -80,8 +80,7 @@ class DOApiService:
         self.updateTime = configparser.get('UPDATE', 'timeout')
 
     def __del__(self):
-        for file in self.files:
-            os.unlink(file)
+       del self
 
 
 
