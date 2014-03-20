@@ -23,7 +23,9 @@ class MyDaemon(Daemon):
             self.checkIp()
             service = DOApiService(self.ip, logging, self.CONF_FILENAME)
             service.runtrack(service.getrecords())
+            self.debug(self.memory_usage_resource())
             time.sleep(int(service.updateTime))
+            self.debug(self.memory_usage_resource())
             gc.collect()
 
 
@@ -41,6 +43,15 @@ class MyDaemon(Daemon):
 
     def debug(self, string):
         return logging.debug(string + ' date=>' + unicode(date.now()))
+
+    def memory_usage_resource(self):
+        import resource
+        rusage_denom = 1024.
+        if sys.platform == 'darwin':
+            # ... it seems that in OSX the output is different units ...
+            rusage_denom = rusage_denom * rusage_denom
+        mem = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / rusage_denom
+        return mem
 
 
 
