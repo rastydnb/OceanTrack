@@ -36,6 +36,7 @@ class MyDaemon(Daemon):
             self.debug(message)
         except Exception,e:
             self.debug('%s', e.message)
+        gc.collect()
 
 
     def debug(self, string):
