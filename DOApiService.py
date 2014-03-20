@@ -78,9 +78,3 @@ class DOApiService:
         self.domainId = configparser.get('DOMAIN', 'Id')
 
         self.updateTime = configparser.get('UPDATE', 'timeout')
-
-    def __del__(self):
-       del self
-
-
-

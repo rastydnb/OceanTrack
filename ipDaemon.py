@@ -42,9 +42,6 @@ class MyDaemon(Daemon):
         return logging.debug(string + ' date=>' + unicode(date.now()))
 
 
-    def __del__(self):
-        del self
-
 
 
 
